@@ -1,5 +1,4 @@
 import java.awt.Dimension;
-
 //TODO: Shove into Thread or something.
 
 public class Main{
@@ -33,7 +32,7 @@ public class Main{
 	public void run() {
 		long timeOfLastTick = System.nanoTime();
 		long timeOfLastRender = System.nanoTime();
-		long timeofLastCounterUpdate = System.currentTimeMillis();
+		long timeOfLastCounterUpdate = System.currentTimeMillis();
 		int framesThisSecond = 0;
 		int updatesThisSecond = 0;
 		int idleThisSecond = 0;
@@ -53,9 +52,10 @@ public class Main{
 			
 			if(shouldRender) {
 				//TODO rendering
+				
 			}
 			
-			if(System.currentTimeMillis() - 999 > timeofLastCounterUpdate) {
+			if(System.currentTimeMillis() - 999 > timeOfLastCounterUpdate) {
 				timeOfLastCounterUpdate = System.currentTimeMillis();
 				
 				fps = framesThisSecond;
@@ -71,13 +71,13 @@ public class Main{
 				idleThisSecond = 0;
 				
 				long seconds = (timeOfLastCounterUpdate - originTime) / 1000;
-				fpsAvg = fpsTotal / seconds;
-				upsAvg = upsTotal / seconds;
-				ipsAvg = ipsTotal / seconds;
+				fpsAvg = fpsTotal / (int)seconds;
+				upsAvg = upsTotal / (int)seconds;
+				ipsAvg = ipsTotal / (int)seconds;
 			}
 			
 			try {
-				long sleepTime = (1 - delta) * NS_PER_TICK / 1000;
+				long sleepTime = (long) ((1 - delta) * NS_PER_TICK / 1000);
 				idleThisSecond += sleepTime;
 				Thread.sleep(sleepTime);
 			} catch(Exception e) { //Specify which later. Don't remember off hand.
@@ -90,7 +90,7 @@ public class Main{
 		return tickCount;
 	}
 	
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		Main main = new Main();
 	}
 	
