@@ -8,8 +8,7 @@ public class DynamicEntity extends Entity {
 	protected double speed;
 	
 	public DynamicEntity(double x, double y, double vx, double vy, double speed) {
-		super(x, y);
-		this(new vec2d(vx, vy), speed;
+		this(new Vec2d(x, y), new Vec2d(vx, vy), speed);
 	}
 
 	public DynamicEntity(Vec2d pos, Vec2d vel, double speed) {
