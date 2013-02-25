@@ -1,3 +1,4 @@
+package src;
 import java.awt.Dimension;
 //TODO: Shove into Thread or something.
 
@@ -15,9 +16,9 @@ public class Main{
 	private int fps = 0;
 	private int ups = 0;
 	private int ips = 0;
-	private int fpsTotal = 0; //convert totals to long?
-	private int upsTotal = 0;
-	private int ipsTotal = 0;
+	private long fpsTotal = 0;
+	private long upsTotal = 0;
+	private long ipsTotal = 0;
 	private int fpsAvg = 0;
 	private int upsAvg = 0;
 	private int ipsAvg = 0;
@@ -71,13 +72,13 @@ public class Main{
 				idleThisSecond = 0;
 				
 				long seconds = (timeOfLastCounterUpdate - originTime) / 1000;
-				fpsAvg = fpsTotal / (int)seconds;
-				upsAvg = upsTotal / (int)seconds;
-				ipsAvg = ipsTotal / (int)seconds;
+				fpsAvg = (int) (fpsTotal / seconds);
+				upsAvg = (int) (upsTotal / seconds);
+				ipsAvg = (int) (ipsTotal / seconds);
 			}
 			
 			try {
-				long sleepTime = (long) ((1 - delta) * NS_PER_TICK / 1000);
+				long sleepTime = (long) ((1.0 - delta) * NS_PER_TICK / 1000);
 				idleThisSecond += sleepTime;
 				Thread.sleep(sleepTime);
 			} catch(Exception e) { //Specify which later. Don't remember off hand.
