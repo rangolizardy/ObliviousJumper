@@ -1,5 +1,8 @@
 package src;
 import java.awt.Dimension;
+
+import src.util.IO.*;
+
 //TODO: Shove into Thread or something.
 
 public class Main{
@@ -24,10 +27,18 @@ public class Main{
 	private int ipsAvg = 0;
 	
 	
-	
+    IOQueue IQueue;
 	public Main() {
 		//TODO init
 		running = true; //Move as fits
+		
+		
+		//Put modules here?
+		this.IQueue = new IOQueue();
+		
+		//Run this, ^Todo at the top.
+		run();
+		
 	}
 	
 	public void run() {
@@ -50,10 +61,13 @@ public class Main{
 				delta -= 1;
 				shouldRender = true;
 			}
+
 			
 			if(shouldRender) {
 				//TODO rendering
 				
+				//I put test's here for now, Nice refresh rate :)
+				System.out.println("Main Thread,Childstatus:"+IQueue.status());
 			}
 			
 			if(System.currentTimeMillis() - 999 > timeOfLastCounterUpdate) {

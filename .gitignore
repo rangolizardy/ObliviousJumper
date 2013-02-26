@@ -10,5 +10,6 @@ ehthumbs.db
 Thumbs.db
 
 
-#bin
+#bin,log 
 bin/
+log/
