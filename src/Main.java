@@ -1,6 +1,7 @@
 package src;
 import java.awt.Dimension;
 
+import src.util.Log;
 import src.util.IO.*;
 
 //TODO: Shove into Thread or something.
@@ -28,14 +29,19 @@ public class Main{
 	
 	
     IOQueue IQueue;
+    Log Logger;
 	public Main() {
 		//TODO init
 		running = true; //Move as fits
 		
 		
 		//Put modules here?
+		
+		
 		this.IQueue = new IOQueue();
 		
+		this.Logger = new Log(); //First indentifier in .log files.
+		this.Logger.setLevel("SEVERE"); //Only let severe's pass.
 		//Run this, ^Todo at the top.
 		run();
 		
@@ -96,7 +102,7 @@ public class Main{
 				idleThisSecond += sleepTime;
 				Thread.sleep(sleepTime);
 			} catch(Exception e) { //Specify which later. Don't remember off hand.
-				e.printStackTrace(); //Replace with better logging features.
+				Logger.getLogger().severe(e.getMessage());
 			}
 		}
 	}
